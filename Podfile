@@ -8,5 +8,6 @@ target 'Simple Sudoku' do
   # Pods for Simple Sudoku
   pod 'RxSwift', '6.1.0'
   pod 'RxCocoa', '6.1.0'
+  pod 'PBSudoku'
 
 end
