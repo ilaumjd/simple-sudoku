@@ -12,7 +12,7 @@ import RxCocoa
 class SudokuViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
-    private let lineSize: CGFloat = 4
+    private let lineSize: CGFloat = 3
     
     @IBOutlet weak var lbSudoku: UILabel!
     @IBOutlet weak var lbTimeTitle: UILabel!
@@ -34,6 +34,8 @@ extension SudokuViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
+        setupRxCvSudoku()
     }
 
 }
@@ -81,12 +83,6 @@ extension SudokuViewController {
         cvSudoku.layer.cornerRadius = 10
         cvSudoku.layer.borderWidth = lineSize
         cvSudoku.layer.borderColor = UIColor.orange.cgColor
-        
-        cvSudoku.rx.setDelegate(self).disposed(by: disposeBag)
-        cvSudoku.rx.itemSelected
-            .subscribe(onNext: { indexPath in
-                
-            }).disposed(by: disposeBag)
     }
     
     private func setup_svNumber() {
@@ -105,6 +101,27 @@ extension SudokuViewController {
 
             svNumber.addArrangedSubview(button)
         }
+    }
+    
+}
+
+// MARK: MEMBER
+extension SudokuViewController {
+    
+    private func setupRxCvSudoku() {
+        cvSudoku.rx.setDelegate(self).disposed(by: disposeBag)
+        cvSudoku.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                if let cell = self?.cvSudoku.cellForItem(at: indexPath) as? SudokuCell {
+                    cell.select()
+                }
+            }).disposed(by: disposeBag)
+        cvSudoku.rx.itemDeselected
+            .subscribe(onNext: { [weak self] indexPath in
+                if let cell = self?.cvSudoku.cellForItem(at: indexPath) as? SudokuCell {
+                    cell.deselect()
+                }
+            }).disposed(by: disposeBag)
     }
     
 }

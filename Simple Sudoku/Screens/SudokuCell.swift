@@ -17,6 +17,18 @@ class SudokuCell: UICollectionViewCell {
         super.awakeFromNib()
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 20, weight: .bold)
+        self.layer.borderColor = UIColor.colorOrange.cgColor
+        self.layer.borderWidth = 0
+    }
+    
+    func select() {
+        self.layer.borderWidth = 3
+        self.layer.cornerRadius = 3
+    }
+    
+    func deselect() {
+        self.layer.borderWidth = 0
+        self.layer.cornerRadius = 0
     }
 
 }
