@@ -13,7 +13,7 @@ class SudokuViewController: UIViewController {
     
     private let vm = SudokuViewModel()
     private let disposeBag = DisposeBag()
-    private let lineSize: CGFloat = 3
+    private let lineWidth: CGFloat = 3
     
     @IBOutlet weak var lbSudoku: UILabel!
     @IBOutlet weak var lbTimeTitle: UILabel!
@@ -46,6 +46,12 @@ extension SudokuViewController {
         vm.newGame()
         
         setupDummy()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        view.layoutIfNeeded()
+        drawLines()
     }
     
     private func setupDummy() {
@@ -82,7 +88,7 @@ extension SudokuViewController {
     private func setup_cvSudoku() {
         cvSudoku.register(UINib(nibName: SudokuCell.identifier, bundle: nil), forCellWithReuseIdentifier: SudokuCell.identifier)
         cvSudoku.layer.cornerRadius = 10
-        cvSudoku.layer.borderWidth = lineSize
+        cvSudoku.layer.borderWidth = lineWidth
         cvSudoku.layer.borderColor = UIColor.orange.cgColor
     }
     
@@ -104,6 +110,24 @@ extension SudokuViewController {
             svNumber.addArrangedSubview(button)
             setupRx_btNumber(button: button)
         }
+    }
+    
+    private func drawLines() {
+        let long = cvSudoku.frame.width
+        let startPos1 = (long / 3) - (lineWidth / 2)
+        let startPos2 = (long * 2 / 3) - (lineWidth / 2)
+        
+        drawLine(x: startPos1, y: 0, width: lineWidth, height: long)
+        drawLine(x: startPos2, y: 0, width: lineWidth, height: long)
+        drawLine(x: 0, y: startPos1, width: long, height: lineWidth)
+        drawLine(x: 0, y: startPos2, width: long, height: lineWidth)
+    }
+    
+    private func drawLine(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) {
+        let layer = CAShapeLayer()
+        layer.path = UIBezierPath(rect: CGRect(x: x, y: y, width: width, height: height)).cgPath
+        layer.fillColor = UIColor.colorOrange.cgColor
+        cvSudoku.layer.addSublayer(layer)
     }
     
 }
