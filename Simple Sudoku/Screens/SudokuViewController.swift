@@ -35,7 +35,8 @@ extension SudokuViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupRxCvSudoku()
+        setupRx_btNewGame()
+        setupRx_cvSudoku()
         
         vm.newGame()
     }
@@ -50,36 +51,16 @@ extension SudokuViewController {
     }
     
     private func setupUI() {
-        setup_lbSudoku()
-        setup_lbTimeTitle()
-        setup_lbTimeValue()
-        setup_btNewGame()
-        setup_btSolveMe()
+        setupFonts()
         setup_cvSudoku()
         setup_svNumber()
     }
     
-    private func setup_lbSudoku() {
+    private func setupFonts() {
         lbSudoku.font = .rounded(ofSize: 100, weight: .bold)
-    }
-    
-    private func setup_lbTimeTitle() {
         lbTimeTitle.font = .rounded(ofSize: 14, weight: .medium)
-    }
-    
-    private func setup_lbTimeValue() {
         lbTimeValue.font = .systemFont(ofSize: 24, weight: .bold)
-    }
-    
-    private func setup_btNewGame() {
         btNewGame.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
-        btNewGame.rx.tap
-            .subscribe(onNext: { [weak self] in
-                self?.vm.newGame()
-            }).disposed(by: disposeBag)
-    }
-    
-    private func setup_btSolveMe() {
         btSolveMe.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
     }
     
@@ -106,7 +87,7 @@ extension SudokuViewController {
             button.titleLabel?.font = .systemFont(ofSize: 24, weight: .bold)
 
             svNumber.addArrangedSubview(button)
-            setupRxBtNumber(button: button)
+            setupRx_btNumber(button: button)
         }
     }
     
@@ -115,7 +96,14 @@ extension SudokuViewController {
 // MARK: MEMBER
 extension SudokuViewController {
     
-    private func setupRxCvSudoku() {
+    private func setupRx_btNewGame() {
+        btNewGame.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.vm.newGame()
+            }).disposed(by: disposeBag)
+    }
+    
+    private func setupRx_cvSudoku() {
         cvSudoku.rx.setDelegate(self).disposed(by: disposeBag)
         cvSudoku.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
@@ -134,7 +122,7 @@ extension SudokuViewController {
             }.disposed(by: disposeBag)
     }
     
-    private func setupRxBtNumber(button: UIButton) {
+    private func setupRx_btNumber(button: UIButton) {
         button.rx.tap
             .subscribe(onNext: { [weak self] in
                 if let currentState = self?.vm.currentState, let selectedIndex = self?.vm.selectedIndex {
