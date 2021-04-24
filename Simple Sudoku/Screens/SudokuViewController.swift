@@ -80,7 +80,6 @@ extension SudokuViewController {
     
     private func setup_cvSudoku() {
         cvSudoku.register(UINib(nibName: SudokuCell.identifier, bundle: nil), forCellWithReuseIdentifier: SudokuCell.identifier)
-        cvSudoku.dataSource = self
         cvSudoku.layer.cornerRadius = 10
         cvSudoku.layer.borderWidth = lineSize
         cvSudoku.layer.borderColor = UIColor.orange.cgColor
@@ -126,6 +125,11 @@ extension SudokuViewController {
                     cell.deselect()
                 }
             }).disposed(by: disposeBag)
+        vm.sudoku
+            .bind(to: cvSudoku.rx.items(cellIdentifier: SudokuCell.identifier, cellType: SudokuCell.self)) { index, number, cell in
+                cell.backgroundColor = index % 2 == 0 ? .colorDark1 : .colorDark2
+                cell.setNumber(number: number)
+            }.disposed(by: disposeBag)
     }
     
     private func setupRxBtNumber(button: UIButton) {
@@ -141,21 +145,7 @@ extension SudokuViewController {
 }
 
 // MARK: COLLECTION VIEW
-extension SudokuViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 9 * 9
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SudokuCell.identifier, for: indexPath)
-        if indexPath.item % 2 == 0 {
-            cell.backgroundColor = .colorDark1
-        } else {
-            cell.backgroundColor = .colorDark2
-        }
-        return cell
-    }
+extension SudokuViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width / 9
