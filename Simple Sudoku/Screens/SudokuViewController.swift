@@ -41,7 +41,6 @@ extension SudokuViewController {
         setupRx_btSolveMe()
         setupRx_cvSudoku()
         setupRxAlert()
-        setupRxTimer()
         
         vm.newGame()
         
@@ -166,24 +165,12 @@ extension SudokuViewController {
                     title = "Congratulations"
                     message = "You completed the game"
                 } else {
-                    
+                    title = "Failed"
+                    message = "You ran out of time"
                 }
                 let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self?.present(alert, animated: true)
-            }).disposed(by: disposeBag)
-    }
-    
-    private func setupRxTimer() {
-        let countdown = 30
-        Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
-            .map { countdown - $0 }
-            .take(until: { $0 == 0 }, behavior: .inclusive)
-            .take(until: self.vm.alert)
-            .subscribe(onNext: { value in
-                print(value)
-            }, onCompleted: {
-                print("completed")
             }).disposed(by: disposeBag)
     }
     

@@ -98,10 +98,10 @@
 		D9E2D6C526340C7600E0E1B0 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				D9E2D6C726340C9000E0E1B0 /* SudokuViewController.swift */,
-				D9E2D6C826340C9000E0E1B0 /* SudokuViewController.xib */,
 				D9E2D6DC26341F2B00E0E1B0 /* SudokuCell.swift */,
 				D9E2D6DD26341F2B00E0E1B0 /* SudokuCell.xib */,
+				D9E2D6C726340C9000E0E1B0 /* SudokuViewController.swift */,
+				D9E2D6C826340C9000E0E1B0 /* SudokuViewController.xib */,
 				D9E2D6E72634336300E0E1B0 /* SudokuViewModel.swift */,
 			);
 			path = Screens;
