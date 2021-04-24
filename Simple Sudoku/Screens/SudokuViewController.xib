@@ -11,6 +11,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SudokuViewController" customModule="Simple_Sudoku" customModuleProvider="target">
             <connections>
+                <outlet property="btNewGame" destination="BLF-ET-2FK" id="bO6-ch-oyG"/>
+                <outlet property="btSolveMe" destination="KGY-7U-WCC" id="65L-3C-MCH"/>
+                <outlet property="cvSudoku" destination="1o7-fa-3tq" id="ysd-48-4CU"/>
+                <outlet property="lbSudoku" destination="P1w-3E-dhj" id="fax-kL-rvC"/>
+                <outlet property="lbTimeTitle" destination="HC9-vW-eHP" id="Gdk-wd-f1c"/>
+                <outlet property="lbTimeValue" destination="L9Z-dv-YC2" id="hIf-7q-qWr"/>
+                <outlet property="svNumber" destination="3HR-rx-IIU" id="5Ri-gQ-ZUZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
