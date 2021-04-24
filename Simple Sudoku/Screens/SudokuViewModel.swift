@@ -14,29 +14,32 @@ class SudokuViewModel {
     
     private let disposeBag = DisposeBag()
     
-    let sudokuRelay = BehaviorRelay<[Int]>(value: [])
-    
     var selectedIndex: Int?
     
+    let currentState = BehaviorRelay<[[Int]]>(value: [])
     var defaultState: [[Int]] = []
     var solution: [[Int]] = []
     
-    init() {
-//        sudokuRelay = BehaviorRelay(value: sudokuRaw)
-    }
+}
+
+// MARK: MEMBER
+extension SudokuViewModel {
     
     func newGame() {
         sudoku.setLevel(level: 1)
         self.defaultState = sudoku.game_sudoku
         self.solution = sudoku.original_sudoku
-        
-        self.sudokuRelay.accept(self.defaultState.flatMap{$0})
+        print(defaultState)
+        print(solution)
+        self.currentState.accept(sudoku.game_sudoku)
     }
     
-    func setupRxSudoku() {
-        sudokuRelay.subscribe(onNext: { sudokuData in
-            
-        }).disposed(by: disposeBag)
+    func getDefaultIndexes() {
+//        let defaults = self.defaultState.flatMap($0)
+//        BehaviorRelay<[[Int]]>(value: defaultState)
+//            .map { defaultState in
+//                defaultState.flatMap { $0 }
+//            }
     }
     
 }

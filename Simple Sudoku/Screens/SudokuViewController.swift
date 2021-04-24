@@ -129,7 +129,10 @@ extension SudokuViewController {
                     cell.deselect()
                 }
             }).disposed(by: disposeBag)
-        vm.sudokuRelay
+        vm.currentState
+            .map {
+                $0.flatMap { $0 }
+            }
             .bind(to: cvSudoku.rx.items(cellIdentifier: SudokuCell.identifier, cellType: SudokuCell.self)) { index, number, cell in
                 cell.backgroundColor = index % 2 == 0 ? .colorDark1 : .colorDark2
                 cell.setNumber(number: number)
