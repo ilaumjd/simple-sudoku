@@ -40,6 +40,7 @@ extension SudokuViewController {
         setupRx_btNewGame()
         setupRx_btSolveMe()
         setupRx_cvSudoku()
+        setupRxAlert()
         
         vm.newGame()
         
@@ -152,6 +153,23 @@ extension SudokuViewController {
                     temp[selectedIndex/9][selectedIndex%9] = button.tag
                     currentState.accept(temp)
                 }
+            }).disposed(by: disposeBag)
+    }
+    
+    private func setupRxAlert() {
+        self.vm.alert
+            .subscribe(onNext: { [weak self] isSuccess in
+                var title = ""
+                var message = ""
+                if isSuccess {
+                    title = "Congratulations"
+                    message = "You completed the game"
+                } else {
+                    
+                }
+                let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self?.present(alert, animated: true)
             }).disposed(by: disposeBag)
     }
     

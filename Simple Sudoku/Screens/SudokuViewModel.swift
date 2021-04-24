@@ -16,6 +16,7 @@ class SudokuViewModel {
     
     var selectedIndex: Int?
     
+    let alert = PublishSubject<Bool>()
     let currentState = BehaviorRelay<[[Int]]>(value: [])
     var defaultState: [[Int]] = []
     var solution: [[Int]] = []
@@ -68,7 +69,7 @@ extension SudokuViewModel {
     private func setupRxChecking() {
         currentState.subscribe(onNext: { [weak self] currentState in
             if let solution = self?.solution, !solution.isEmpty, currentState == solution {
-                print("FINISHED")
+                self?.alert.onNext(true)
             }
         }).disposed(by: disposeBag)
     }
