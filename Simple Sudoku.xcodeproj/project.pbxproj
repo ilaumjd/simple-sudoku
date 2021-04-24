@@ -15,6 +15,7 @@
 		D9E2D6C926340C9000E0E1B0 /* SudokuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E2D6C726340C9000E0E1B0 /* SudokuViewController.swift */; };
 		D9E2D6CA26340C9000E0E1B0 /* SudokuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9E2D6C826340C9000E0E1B0 /* SudokuViewController.xib */; };
 		D9E2D6D62634148B00E0E1B0 /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E2D6D52634148B00E0E1B0 /* UIFont+Ext.swift */; };
+		D9E2D6DA26341D6E00E0E1B0 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E2D6D926341D6E00E0E1B0 /* UIColor+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		D9E2D6C726340C9000E0E1B0 /* SudokuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuViewController.swift; sourceTree = "<group>"; };
 		D9E2D6C826340C9000E0E1B0 /* SudokuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SudokuViewController.xib; sourceTree = "<group>"; };
 		D9E2D6D52634148B00E0E1B0 /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
+		D9E2D6D926341D6E00E0E1B0 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				D9E2D6D52634148B00E0E1B0 /* UIFont+Ext.swift */,
+				D9E2D6D926341D6E00E0E1B0 /* UIColor+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 				D9E2D6B426340BE800E0E1B0 /* ViewController.swift in Sources */,
 				D9E2D6B026340BE800E0E1B0 /* AppDelegate.swift in Sources */,
 				D9E2D6B226340BE800E0E1B0 /* SceneDelegate.swift in Sources */,
+				D9E2D6DA26341D6E00E0E1B0 /* UIColor+Ext.swift in Sources */,
 				D9E2D6C926340C9000E0E1B0 /* SudokuViewController.swift in Sources */,
 				D9E2D6D62634148B00E0E1B0 /* UIFont+Ext.swift in Sources */,
 			);

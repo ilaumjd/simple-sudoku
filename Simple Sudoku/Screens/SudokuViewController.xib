@@ -72,7 +72,7 @@
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="1o7-fa-3tq">
                     <rect key="frame" x="20" y="215" width="374" height="374"/>
-                    <color key="backgroundColor" name="colorOrange"/>
+                    <color key="backgroundColor" name="colorDark1"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="1o7-fa-3tq" secondAttribute="height" multiplier="1:1" id="Jhg-Ab-RyI"/>

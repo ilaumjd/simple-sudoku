@@ -17,7 +17,7 @@ class SudokuViewController: UIViewController {
     @IBOutlet weak var cvSudoku: UICollectionView!
     @IBOutlet weak var svNumber: UIStackView!
     
-    let lineSize: CGFloat = 3
+    let lineSize: CGFloat = 4
     
     static func create() -> SudokuViewController {
         return SudokuViewController(nibName: "SudokuViewController", bundle: nil)
@@ -101,9 +101,9 @@ extension SudokuViewController: UICollectionViewDelegate, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         if indexPath.item % 2 == 0 {
-            cell.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            cell.backgroundColor = .colorDark1
         } else {
-            cell.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            cell.backgroundColor = .colorDark2
         }
         return cell
     }
