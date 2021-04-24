@@ -82,7 +82,21 @@ extension SudokuViewController {
     }
     
     private func setup_svNumber() {
+        svNumber.axis = .horizontal
+        svNumber.distribution = .fillEqually
+        svNumber.alignment = .fill
         
+        for i in 1...9 {
+            let button = UIButton()
+            button.translatesAutoresizingMaskIntoConstraints = false
+            
+            button.setTitle("\(i)", for: .normal)
+            button.setTitleColor(.colorDark1, for: .normal)
+            button.setTitleColor(UIColor.colorDark1.withAlphaComponent(0.5), for: .highlighted)
+            button.titleLabel?.font = .systemFont(ofSize: 24, weight: .bold)
+
+            svNumber.addArrangedSubview(button)
+        }
     }
     
 }
