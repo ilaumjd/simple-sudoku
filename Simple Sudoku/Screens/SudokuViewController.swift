@@ -55,19 +55,19 @@ extension SudokuViewController {
     }
     
     private func setup_lbTimeTitle() {
-        lbTimeTitle.font = .systemFont(ofSize: 16)
+        lbTimeTitle.font = .rounded(ofSize: 14, weight: .medium)
     }
     
     private func setup_lbTimeValue() {
-        lbTimeValue.font = .boldSystemFont(ofSize: 24)
+        lbTimeValue.font = .systemFont(ofSize: 24, weight: .bold)
     }
     
     private func setup_btNewGame() {
-        btNewGame.titleLabel?.font = .boldSystemFont(ofSize: 20)
+        btNewGame.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
     }
     
     private func setup_btSolveMe() {
-        btSolveMe.titleLabel?.font = .boldSystemFont(ofSize: 20)
+        btSolveMe.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
     }
     
     private func setup_cvSudoku() {
