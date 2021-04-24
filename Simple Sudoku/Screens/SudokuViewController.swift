@@ -92,6 +92,7 @@ extension SudokuViewController {
         
         for i in 1...9 {
             let button = UIButton()
+            button.tag = i
             button.translatesAutoresizingMaskIntoConstraints = false
             
             button.setTitle("\(i)", for: .normal)
@@ -100,6 +101,7 @@ extension SudokuViewController {
             button.titleLabel?.font = .systemFont(ofSize: 24, weight: .bold)
 
             svNumber.addArrangedSubview(button)
+            setupRxBtNumber(button: button)
         }
     }
     
@@ -124,10 +126,17 @@ extension SudokuViewController {
             }).disposed(by: disposeBag)
     }
     
+    private func setupRxBtNumber(button: UIButton) {
+        button.rx.tap
+            .subscribe(onNext: { [weak self] in
+                print(button.tag)
+            }).disposed(by: disposeBag)
+    }
+    
 }
 
 // MARK: COLLECTION VIEW
-extension SudokuViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+extension SudokuViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 9 * 9
