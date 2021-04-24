@@ -39,14 +39,14 @@ class SudokuCell: UICollectionViewCell {
         }
     }
     
-    func select() {
-        self.layer.borderWidth = 3
-        self.layer.cornerRadius = 3
-    }
-    
-    func deselect() {
-        self.layer.borderWidth = 0
-        self.layer.cornerRadius = 0
+    func setSelected(isSelected: Bool) {
+        if isSelected {
+            self.layer.borderWidth = 3
+            self.layer.cornerRadius = 3
+        } else {
+            self.layer.borderWidth = 0
+            self.layer.cornerRadius = 0
+        }
     }
 
 }

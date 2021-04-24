@@ -35,8 +35,9 @@ extension SudokuViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
         setupRxCvSudoku()
+        
+        vm.newGame()
     }
 
 }
@@ -74,10 +75,6 @@ extension SudokuViewController {
         btNewGame.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
         btNewGame.rx.tap
             .subscribe(onNext: { [weak self] in
-                let indexPath = IndexPath(item: self?.vm.selectedIndex ?? 0, section: 0)
-                if let cell = self?.cvSudoku.cellForItem(at: indexPath) as? SudokuCell {
-                    cell.deselect()
-                }
                 self?.vm.newGame()
             }).disposed(by: disposeBag)
     }
@@ -123,15 +120,7 @@ extension SudokuViewController {
         cvSudoku.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
                 self?.vm.selectedIndex = indexPath.item
-                if let cell = self?.cvSudoku.cellForItem(at: indexPath) as? SudokuCell {
-                    cell.select()
-                }
-            }).disposed(by: disposeBag)
-        cvSudoku.rx.itemDeselected
-            .subscribe(onNext: { [weak self] indexPath in
-                if let cell = self?.cvSudoku.cellForItem(at: indexPath) as? SudokuCell {
-                    cell.deselect()
-                }
+                self?.cvSudoku.reloadData()
             }).disposed(by: disposeBag)
         vm.currentState
             .map {
@@ -141,15 +130,17 @@ extension SudokuViewController {
                 cell.backgroundColor = index % 2 == 0 ? .colorDark1 : .colorDark2
                 cell.setDefault(isDefault: self?.vm.isDefault(index: index) ?? false)
                 cell.setNumber(number: number)
+                cell.setSelected(isSelected: (self?.vm.selectedIndex ?? -1) == index)
             }.disposed(by: disposeBag)
     }
     
     private func setupRxBtNumber(button: UIButton) {
         button.rx.tap
             .subscribe(onNext: { [weak self] in
-                let indexPath = IndexPath(item: self?.vm.selectedIndex ?? 0, section: 0)
-                if let cell = self?.cvSudoku.cellForItem(at: indexPath) as? SudokuCell {
-                    cell.setNumber(number: button.tag)
+                if let currentState = self?.vm.currentState, let selectedIndex = self?.vm.selectedIndex {
+                    var temp = currentState.value
+                    temp[selectedIndex/9][selectedIndex%9] = button.tag
+                    currentState.accept(temp)
                 }
             }).disposed(by: disposeBag)
     }
