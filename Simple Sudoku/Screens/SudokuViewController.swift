@@ -49,7 +49,7 @@ extension SudokuViewController {
     }
     
     private func setupDummy() {
-        btDummy.backgroundColor = .red
+//        btDummy.backgroundColor = .red
         btDummy.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.vm.dummyGame()

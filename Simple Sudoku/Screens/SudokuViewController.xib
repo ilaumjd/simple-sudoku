@@ -29,22 +29,18 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5wT-Y2-y9U" userLabel="BG">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i73-IH-wpf">
-                            <rect key="frame" x="315" y="30" width="30" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="O8p-Ac-IX5"/>
-                                <constraint firstAttribute="width" constant="30" id="oQC-Oj-fot"/>
-                            </constraints>
-                        </button>
-                    </subviews>
                     <color key="backgroundColor" name="colorDark1"/>
                     <constraints>
-                        <constraint firstItem="i73-IH-wpf" firstAttribute="top" secondItem="5wT-Y2-y9U" secondAttribute="top" constant="30" id="CNu-MJ-QgP"/>
-                        <constraint firstAttribute="trailing" secondItem="i73-IH-wpf" secondAttribute="trailing" constant="30" id="KsC-8U-OL6"/>
                         <constraint firstAttribute="height" constant="400" id="pVj-bl-X8j"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i73-IH-wpf">
+                    <rect key="frame" x="325" y="0.0" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="O8p-Ac-IX5"/>
+                        <constraint firstAttribute="width" constant="50" id="oQC-Oj-fot"/>
+                    </constraints>
+                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sudoku" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1w-3E-dhj">
                     <rect key="frame" x="158.5" y="30" width="58" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -126,8 +122,10 @@
                 <constraint firstItem="5wT-Y2-y9U" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Iil-Do-5J3"/>
                 <constraint firstItem="L9Z-dv-YC2" firstAttribute="bottom" secondItem="aFo-Sm-SMo" secondAttribute="bottom" id="JMc-0z-MVO"/>
                 <constraint firstItem="1o7-fa-3tq" firstAttribute="top" secondItem="aFo-Sm-SMo" secondAttribute="bottom" constant="40" id="LKi-ZM-5us"/>
+                <constraint firstItem="i73-IH-wpf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Pgw-jJ-QY7"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="L9Z-dv-YC2" secondAttribute="trailing" constant="20" id="SmT-gw-QY7"/>
                 <constraint firstItem="aFo-Sm-SMo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Stm-Is-K8p"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="i73-IH-wpf" secondAttribute="trailing" id="TcK-uz-tJW"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3HR-rx-IIU" secondAttribute="trailing" constant="20" id="Ydo-S1-Zap"/>
                 <constraint firstItem="aFo-Sm-SMo" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.4" id="b6Y-jQ-szD"/>
                 <constraint firstItem="aFo-Sm-SMo" firstAttribute="top" secondItem="P1w-3E-dhj" secondAttribute="bottom" constant="30" id="bZF-W3-dsO"/>
