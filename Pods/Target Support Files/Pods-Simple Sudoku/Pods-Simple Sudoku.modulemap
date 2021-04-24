@@ -1,0 +1,6 @@
+framework module Pods_Simple_Sudoku {
+  umbrella header "Pods-Simple Sudoku-umbrella.h"
+
+  export *
+  module * { export * }
+}
