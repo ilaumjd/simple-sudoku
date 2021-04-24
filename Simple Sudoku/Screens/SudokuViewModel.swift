@@ -11,23 +11,30 @@ import RxCocoa
 
 class SudokuViewModel {
     
+    private let disposeBag = DisposeBag()
+    
     var selectedIndex: Int?
-    
-    var sudokuRaw = [ [0,0,0,0,0,0,0,0,0],
-                      [0,0,0,0,0,0,0,0,0],
-                      [0,0,0,0,0,0,0,0,0],
-                      [0,0,0,0,0,0,0,0,0],
-                      [0,0,0,0,0,0,1,0,0],
-                      [0,0,0,0,0,0,0,0,0],
-                      [0,0,0,0,0,0,9,0,0],
-                      [0,0,0,0,0,0,0,0,0],
-                      [0,0,0,0,0,0,0,0,0] ]
-    
-    
-    let sudoku: BehaviorRelay<[Int]>
+    let sudokuData: BehaviorRelay<[Int]>
     
     init() {
-//        sudoku = BehaviorRelay(value: Array(sudokuRaw.joined()))
-        sudoku = BehaviorRelay(value: SudokuExamples.example1)
+        var sudokuRaw = SudokuExamples.example1
+        sudokuRaw[0] = 0
+        sudokuData = BehaviorRelay(value: sudokuRaw)
     }
+    
+    func setupRxSudoku() {
+        sudokuData.subscribe(onNext: { sudokuData in
+            
+        }).disposed(by: disposeBag)
+    }
+    
+}
+
+// MARK: CHECKING
+extension SudokuViewModel {
+    
+    private func checkRows(data: [Int]) {
+        
+    }
+    
 }
