@@ -23,9 +23,10 @@ class SudokuCell: UICollectionViewCell {
     
     func setDefault(isDefault: Bool) {
         if isDefault {
-            label.textColor = .colorOrange
-        } else {
             label.textColor = .colorWhite
+            self.isUserInteractionEnabled = false
+        } else {
+            label.textColor = .colorOrange
         }
     }
     
