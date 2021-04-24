@@ -19,7 +19,7 @@
 		D9E2D6DE26341F2B00E0E1B0 /* SudokuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E2D6DC26341F2B00E0E1B0 /* SudokuCell.swift */; };
 		D9E2D6DF26341F2B00E0E1B0 /* SudokuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9E2D6DD26341F2B00E0E1B0 /* SudokuCell.xib */; };
 		D9E2D6E82634336300E0E1B0 /* SudokuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E2D6E72634336300E0E1B0 /* SudokuViewModel.swift */; };
-		D9E2D6EC26343CDF00E0E1B0 /* SudokuExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E2D6EB26343CDF00E0E1B0 /* SudokuExamples.swift */; };
+		D9E2D6EC26343CDF00E0E1B0 /* SudokuDummies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E2D6EB26343CDF00E0E1B0 /* SudokuDummies.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +38,7 @@
 		D9E2D6DC26341F2B00E0E1B0 /* SudokuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuCell.swift; sourceTree = "<group>"; };
 		D9E2D6DD26341F2B00E0E1B0 /* SudokuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SudokuCell.xib; sourceTree = "<group>"; };
 		D9E2D6E72634336300E0E1B0 /* SudokuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuViewModel.swift; sourceTree = "<group>"; };
-		D9E2D6EB26343CDF00E0E1B0 /* SudokuExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuExamples.swift; sourceTree = "<group>"; };
+		D9E2D6EB26343CDF00E0E1B0 /* SudokuDummies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuDummies.swift; sourceTree = "<group>"; };
 		FE6BEFAB99002D352C80B9FC /* Pods_Simple_Sudoku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Simple_Sudoku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -119,7 +119,7 @@
 		D9E2D6EA26343CCF00E0E1B0 /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				D9E2D6EB26343CDF00E0E1B0 /* SudokuExamples.swift */,
+				D9E2D6EB26343CDF00E0E1B0 /* SudokuDummies.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -249,7 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9E2D6B026340BE800E0E1B0 /* AppDelegate.swift in Sources */,
-				D9E2D6EC26343CDF00E0E1B0 /* SudokuExamples.swift in Sources */,
+				D9E2D6EC26343CDF00E0E1B0 /* SudokuDummies.swift in Sources */,
 				D9E2D6B226340BE800E0E1B0 /* SceneDelegate.swift in Sources */,
 				D9E2D6DE26341F2B00E0E1B0 /* SudokuCell.swift in Sources */,
 				D9E2D6DA26341D6E00E0E1B0 /* UIColor+Ext.swift in Sources */,

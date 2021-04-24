@@ -32,8 +32,10 @@ extension SudokuViewModel {
         sudoku.setLevel(level: 1)
         self.defaultState = sudoku.game_sudoku
         self.solution = sudoku.original_sudoku
-        print(defaultState)
-        print(solution)
+        populate()
+    }
+    
+    func populate() {
         self.currentState.accept(sudoku.game_sudoku)
         self.defaultIndexes = self.defaultState
             .flatMap { $0 }
@@ -42,6 +44,17 @@ extension SudokuViewModel {
     
     func isDefault(index: Int) -> Bool {
         return defaultIndexes[index]
+    }
+    
+    func dummyGame() {
+        self.selectedIndex = nil
+        var dummy = SudokuDummies.dummy1
+        dummy[0][0] = 0
+        dummy[4][6] = 0
+        dummy[5][1] = 0
+        self.defaultState = dummy
+        self.solution = SudokuDummies.dummy1
+        populate()
     }
     
 }
