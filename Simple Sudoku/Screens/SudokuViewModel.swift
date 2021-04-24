@@ -8,22 +8,33 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import PBSudoku
 
 class SudokuViewModel {
     
     private let disposeBag = DisposeBag()
     
+    let sudokuRelay = BehaviorRelay<[Int]>(value: [])
+    
     var selectedIndex: Int?
-    let sudokuData: BehaviorRelay<[Int]>
+    
+    var defaultState: [[Int]] = []
+    var solution: [[Int]] = []
     
     init() {
-        var sudokuRaw = SudokuExamples.example1
-        sudokuRaw[0] = 0
-        sudokuData = BehaviorRelay(value: sudokuRaw)
+//        sudokuRelay = BehaviorRelay(value: sudokuRaw)
+    }
+    
+    func newGame() {
+        sudoku.setLevel(level: 1)
+        self.defaultState = sudoku.game_sudoku
+        self.solution = sudoku.original_sudoku
+        
+        self.sudokuRelay.accept(self.defaultState.flatMap{$0})
     }
     
     func setupRxSudoku() {
-        sudokuData.subscribe(onNext: { sudokuData in
+        sudokuRelay.subscribe(onNext: { sudokuData in
             
         }).disposed(by: disposeBag)
     }

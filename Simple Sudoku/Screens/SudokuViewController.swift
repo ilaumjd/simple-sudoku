@@ -72,6 +72,10 @@ extension SudokuViewController {
     
     private func setup_btNewGame() {
         btNewGame.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
+        btNewGame.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.vm.newGame()
+            }).disposed(by: disposeBag)
     }
     
     private func setup_btSolveMe() {
@@ -125,7 +129,7 @@ extension SudokuViewController {
                     cell.deselect()
                 }
             }).disposed(by: disposeBag)
-        vm.sudokuData
+        vm.sudokuRelay
             .bind(to: cvSudoku.rx.items(cellIdentifier: SudokuCell.identifier, cellType: SudokuCell.self)) { index, number, cell in
                 cell.backgroundColor = index % 2 == 0 ? .colorDark1 : .colorDark2
                 cell.setNumber(number: number)
