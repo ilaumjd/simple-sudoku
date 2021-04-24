@@ -133,8 +133,9 @@ extension SudokuViewController {
             .map {
                 $0.flatMap { $0 }
             }
-            .bind(to: cvSudoku.rx.items(cellIdentifier: SudokuCell.identifier, cellType: SudokuCell.self)) { index, number, cell in
+            .bind(to: cvSudoku.rx.items(cellIdentifier: SudokuCell.identifier, cellType: SudokuCell.self)) { [weak self] index, number, cell in
                 cell.backgroundColor = index % 2 == 0 ? .colorDark1 : .colorDark2
+                cell.setDefault(isDefault: self?.vm.isDefault(index: index) ?? false)
                 cell.setNumber(number: number)
             }.disposed(by: disposeBag)
     }

@@ -20,6 +20,8 @@ class SudokuViewModel {
     var defaultState: [[Int]] = []
     var solution: [[Int]] = []
     
+    private var defaultIndexes: [Bool] = []
+    
 }
 
 // MARK: MEMBER
@@ -32,14 +34,13 @@ extension SudokuViewModel {
         print(defaultState)
         print(solution)
         self.currentState.accept(sudoku.game_sudoku)
+        self.defaultIndexes = self.defaultState
+            .flatMap { $0 }
+            .map { $0 != 0 }
     }
     
-    func getDefaultIndexes() {
-//        let defaults = self.defaultState.flatMap($0)
-//        BehaviorRelay<[[Int]]>(value: defaultState)
-//            .map { defaultState in
-//                defaultState.flatMap { $0 }
-//            }
+    func isDefault(index: Int) -> Bool {
+        return defaultIndexes[index]
     }
     
 }

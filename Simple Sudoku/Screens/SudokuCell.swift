@@ -21,6 +21,14 @@ class SudokuCell: UICollectionViewCell {
         self.layer.borderWidth = 0
     }
     
+    func setDefault(isDefault: Bool) {
+        if isDefault {
+            label.textColor = .colorOrange
+        } else {
+            label.textColor = .colorWhite
+        }
+    }
+    
     func setNumber(number: Int) {
         if (1...9).contains(number) {
             label.text = "\(number)"
