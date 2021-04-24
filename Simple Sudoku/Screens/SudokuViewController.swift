@@ -23,6 +23,8 @@ class SudokuViewController: UIViewController {
     @IBOutlet weak var cvSudoku: UICollectionView!
     @IBOutlet weak var svNumber: UIStackView!
     
+    @IBOutlet weak var btDummy: UIButton!
+    
     static func create() -> SudokuViewController {
         return SudokuViewController(nibName: "SudokuViewController", bundle: nil)
     }
@@ -40,6 +42,16 @@ extension SudokuViewController {
         setupRx_cvSudoku()
         
         vm.newGame()
+        
+        setupDummy()
+    }
+    
+    private func setupDummy() {
+        btDummy.backgroundColor = .red
+        btDummy.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.vm.dummyGame()
+            }).disposed(by: disposeBag)
     }
 
 }

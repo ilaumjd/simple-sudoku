@@ -28,7 +28,6 @@ class SudokuViewModel {
 extension SudokuViewModel {
     
     func newGame() {
-        self.selectedIndex = nil
         sudoku.setLevel(level: 1)
         self.defaultState = sudoku.game_sudoku
         self.solution = sudoku.original_sudoku
@@ -36,7 +35,8 @@ extension SudokuViewModel {
     }
     
     func populate() {
-        self.currentState.accept(sudoku.game_sudoku)
+        self.selectedIndex = nil
+        self.currentState.accept(self.defaultState)
         self.defaultIndexes = self.defaultState
             .flatMap { $0 }
             .map { $0 != 0 }
@@ -47,7 +47,6 @@ extension SudokuViewModel {
     }
     
     func dummyGame() {
-        self.selectedIndex = nil
         var dummy = SudokuDummies.dummy1
         dummy[0][0] = 0
         dummy[4][6] = 0
