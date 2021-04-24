@@ -36,6 +36,7 @@ extension SudokuViewController {
         super.viewDidLoad()
         setupUI()
         setupRx_btNewGame()
+        setupRx_btSolveMe()
         setupRx_cvSudoku()
         
         vm.newGame()
@@ -93,13 +94,22 @@ extension SudokuViewController {
     
 }
 
-// MARK: MEMBER
+// MARK: RX
 extension SudokuViewController {
     
     private func setupRx_btNewGame() {
         btNewGame.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.vm.newGame()
+            }).disposed(by: disposeBag)
+    }
+    
+    private func setupRx_btSolveMe() {
+        btSolveMe.rx.tap
+            .subscribe(onNext: { [weak self] in
+                if let vm = self?.vm {
+                    vm.currentState.accept(vm.solution)
+                }
             }).disposed(by: disposeBag)
     }
     
