@@ -16,6 +16,8 @@
 		D9E2D6CA26340C9000E0E1B0 /* SudokuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9E2D6C826340C9000E0E1B0 /* SudokuViewController.xib */; };
 		D9E2D6D62634148B00E0E1B0 /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E2D6D52634148B00E0E1B0 /* UIFont+Ext.swift */; };
 		D9E2D6DA26341D6E00E0E1B0 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E2D6D926341D6E00E0E1B0 /* UIColor+Ext.swift */; };
+		D9E2D6DE26341F2B00E0E1B0 /* SudokuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E2D6DC26341F2B00E0E1B0 /* SudokuCell.swift */; };
+		D9E2D6DF26341F2B00E0E1B0 /* SudokuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9E2D6DD26341F2B00E0E1B0 /* SudokuCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		D9E2D6C826340C9000E0E1B0 /* SudokuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SudokuViewController.xib; sourceTree = "<group>"; };
 		D9E2D6D52634148B00E0E1B0 /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
 		D9E2D6D926341D6E00E0E1B0 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		D9E2D6DC26341F2B00E0E1B0 /* SudokuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuCell.swift; sourceTree = "<group>"; };
+		D9E2D6DD26341F2B00E0E1B0 /* SudokuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SudokuCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,8 @@
 			children = (
 				D9E2D6C726340C9000E0E1B0 /* SudokuViewController.swift */,
 				D9E2D6C826340C9000E0E1B0 /* SudokuViewController.xib */,
+				D9E2D6DC26341F2B00E0E1B0 /* SudokuCell.swift */,
+				D9E2D6DD26341F2B00E0E1B0 /* SudokuCell.xib */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -151,6 +157,7 @@
 			files = (
 				D9E2D6BC26340BEB00E0E1B0 /* LaunchScreen.storyboard in Resources */,
 				D9E2D6CA26340C9000E0E1B0 /* SudokuViewController.xib in Resources */,
+				D9E2D6DF26341F2B00E0E1B0 /* SudokuCell.xib in Resources */,
 				D9E2D6B926340BEB00E0E1B0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -165,6 +172,7 @@
 				D9E2D6B426340BE800E0E1B0 /* ViewController.swift in Sources */,
 				D9E2D6B026340BE800E0E1B0 /* AppDelegate.swift in Sources */,
 				D9E2D6B226340BE800E0E1B0 /* SceneDelegate.swift in Sources */,
+				D9E2D6DE26341F2B00E0E1B0 /* SudokuCell.swift in Sources */,
 				D9E2D6DA26341D6E00E0E1B0 /* UIColor+Ext.swift in Sources */,
 				D9E2D6C926340C9000E0E1B0 /* SudokuViewController.swift in Sources */,
 				D9E2D6D62634148B00E0E1B0 /* UIFont+Ext.swift in Sources */,

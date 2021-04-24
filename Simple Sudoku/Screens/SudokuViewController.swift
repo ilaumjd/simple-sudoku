@@ -73,7 +73,7 @@ extension SudokuViewController {
     }
     
     private func setup_cvSudoku() {
-        cvSudoku.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        cvSudoku.register(UINib(nibName: SudokuCell.identifier, bundle: nil), forCellWithReuseIdentifier: SudokuCell.identifier)
         cvSudoku.delegate = self
         cvSudoku.dataSource = self
         cvSudoku.layer.cornerRadius = 10
@@ -90,16 +90,12 @@ extension SudokuViewController {
 // MARK: COLLECTION VIEW
 extension SudokuViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return 9
-//    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 9 * 9
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SudokuCell.identifier, for: indexPath)
         if indexPath.item % 2 == 0 {
             cell.backgroundColor = .colorDark1
         } else {
