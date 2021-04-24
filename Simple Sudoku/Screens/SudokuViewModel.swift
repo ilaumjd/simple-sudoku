@@ -27,6 +27,7 @@ class SudokuViewModel {
     let sudoku: BehaviorRelay<[Int]>
     
     init() {
-        sudoku = BehaviorRelay(value: Array(sudokuRaw.joined()))
+//        sudoku = BehaviorRelay(value: Array(sudokuRaw.joined()))
+        sudoku = BehaviorRelay(value: SudokuExamples.example1)
     }
 }
