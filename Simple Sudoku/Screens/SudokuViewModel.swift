@@ -22,6 +22,10 @@ class SudokuViewModel {
     
     private var defaultIndexes: [Bool] = []
     
+    init() {
+        setupRxChecking()
+    }
+    
 }
 
 // MARK: MEMBER
@@ -31,6 +35,16 @@ extension SudokuViewModel {
         sudoku.setLevel(level: 1)
         self.defaultState = sudoku.game_sudoku
         self.solution = sudoku.original_sudoku
+        populate()
+    }
+    
+    func dummyGame() {
+        var dummy = SudokuDummies.dummy1
+        dummy[0][0] = 0
+        dummy[4][7] = 0
+        dummy[5][1] = 0
+        self.defaultState = dummy
+        self.solution = SudokuDummies.dummy1
         populate()
     }
     
@@ -46,23 +60,17 @@ extension SudokuViewModel {
         return defaultIndexes[index]
     }
     
-    func dummyGame() {
-        var dummy = SudokuDummies.dummy1
-        dummy[0][0] = 0
-        dummy[4][6] = 0
-        dummy[5][1] = 0
-        self.defaultState = dummy
-        self.solution = SudokuDummies.dummy1
-        populate()
-    }
-    
 }
 
 // MARK: CHECKING
 extension SudokuViewModel {
     
-    private func checkRows(data: [Int]) {
-        
+    private func setupRxChecking() {
+        currentState.subscribe(onNext: { [weak self] currentState in
+            if let solution = self?.solution, !solution.isEmpty, currentState == solution {
+                print("FINISHED")
+            }
+        }).disposed(by: disposeBag)
     }
     
 }
