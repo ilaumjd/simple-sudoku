@@ -17,6 +17,8 @@ class SudokuViewController: UIViewController {
     @IBOutlet weak var cvSudoku: UICollectionView!
     @IBOutlet weak var svNumber: UIStackView!
     
+    let lineSize: CGFloat = 3
+    
     static func create() -> SudokuViewController {
         return SudokuViewController(nibName: "SudokuViewController", bundle: nil)
     }
@@ -74,6 +76,9 @@ extension SudokuViewController {
         cvSudoku.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         cvSudoku.delegate = self
         cvSudoku.dataSource = self
+        cvSudoku.layer.cornerRadius = 10
+        cvSudoku.layer.borderWidth = lineSize
+        cvSudoku.layer.borderColor = UIColor.orange.cgColor
     }
     
     private func setup_svNumber() {
@@ -85,6 +90,10 @@ extension SudokuViewController {
 // MARK: COLLECTION VIEW
 extension SudokuViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        return 9
+//    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 9 * 9
     }
@@ -92,9 +101,9 @@ extension SudokuViewController: UICollectionViewDelegate, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         if indexPath.item % 2 == 0 {
-            cell.backgroundColor = .blue
+            cell.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         } else {
-            cell.backgroundColor = .red
+            cell.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         }
         return cell
     }
@@ -110,6 +119,10 @@ extension SudokuViewController: UICollectionViewDelegate, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.zero
     }
     
 }
