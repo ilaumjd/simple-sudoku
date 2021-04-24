@@ -20,6 +20,7 @@
 		D9E2D6DF26341F2B00E0E1B0 /* SudokuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9E2D6DD26341F2B00E0E1B0 /* SudokuCell.xib */; };
 		D9E2D6E82634336300E0E1B0 /* SudokuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E2D6E72634336300E0E1B0 /* SudokuViewModel.swift */; };
 		D9E2D6EC26343CDF00E0E1B0 /* SudokuDummies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E2D6EB26343CDF00E0E1B0 /* SudokuDummies.swift */; };
+		D9E2D6FC263474A500E0E1B0 /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E2D6FB263474A500E0E1B0 /* Double+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		D9E2D6DD26341F2B00E0E1B0 /* SudokuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SudokuCell.xib; sourceTree = "<group>"; };
 		D9E2D6E72634336300E0E1B0 /* SudokuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuViewModel.swift; sourceTree = "<group>"; };
 		D9E2D6EB26343CDF00E0E1B0 /* SudokuDummies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuDummies.swift; sourceTree = "<group>"; };
+		D9E2D6FB263474A500E0E1B0 /* Double+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Ext.swift"; sourceTree = "<group>"; };
 		FE6BEFAB99002D352C80B9FC /* Pods_Simple_Sudoku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Simple_Sudoku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -112,6 +114,7 @@
 			children = (
 				D9E2D6D52634148B00E0E1B0 /* UIFont+Ext.swift */,
 				D9E2D6D926341D6E00E0E1B0 /* UIColor+Ext.swift */,
+				D9E2D6FB263474A500E0E1B0 /* Double+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				D9E2D6E82634336300E0E1B0 /* SudokuViewModel.swift in Sources */,
 				D9E2D6C926340C9000E0E1B0 /* SudokuViewController.swift in Sources */,
 				D9E2D6D62634148B00E0E1B0 /* UIFont+Ext.swift in Sources */,
+				D9E2D6FC263474A500E0E1B0 /* Double+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

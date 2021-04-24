@@ -40,6 +40,7 @@ extension SudokuViewController {
         setupRx_btNewGame()
         setupRx_btSolveMe()
         setupRx_cvSudoku()
+        setupRxTimer()
         setupRxAlert()
         
         vm.newGame()
@@ -154,6 +155,10 @@ extension SudokuViewController {
                     currentState.accept(temp)
                 }
             }).disposed(by: disposeBag)
+    }
+    
+    private func setupRxTimer() {
+        vm.timerString.bind(to: lbTimeValue.rx.text).disposed(by: disposeBag)
     }
     
     private func setupRxAlert() {

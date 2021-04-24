@@ -21,6 +21,7 @@ class SudokuViewModel {
         .interval(.seconds(1), scheduler: MainScheduler.instance)
         .map { 10 - $0 }
         .take(until: { $0 == 0 }, behavior: .inclusive)
+    var timerString = BehaviorRelay<String>(value: "")
     var timerObserver: Disposable?
     
     let currentState = BehaviorRelay<[[Int]]>(value: [])
@@ -64,8 +65,8 @@ extension SudokuViewModel {
         
         self.timerObserver?.dispose()
         self.timerObserver = self.timer
-            .subscribe(onNext: { value in
-                print(value)
+            .subscribe(onNext: { [weak self] seconds in
+                self?.timerString.accept(Double(seconds).asString(style: .positional))
             }, onCompleted: { [weak self] in
                 self?.alert.onNext(false)
             })
