@@ -21,6 +21,14 @@ class SudokuCell: UICollectionViewCell {
         self.layer.borderWidth = 0
     }
     
+    func setNumber(number: Int) {
+        if (1...9).contains(number) {
+            label.text = "\(number)"
+        } else {
+            label.text = ""
+        }
+    }
+    
     func select() {
         self.layer.borderWidth = 3
         self.layer.cornerRadius = 3

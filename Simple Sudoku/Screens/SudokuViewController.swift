@@ -11,6 +11,7 @@ import RxCocoa
 
 class SudokuViewController: UIViewController {
     
+    private let vm = SudokuViewModel()
     private let disposeBag = DisposeBag()
     private let lineSize: CGFloat = 3
     
@@ -114,6 +115,7 @@ extension SudokuViewController {
         cvSudoku.rx.setDelegate(self).disposed(by: disposeBag)
         cvSudoku.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
+                self?.vm.selectedIndex = indexPath.item
                 if let cell = self?.cvSudoku.cellForItem(at: indexPath) as? SudokuCell {
                     cell.select()
                 }
@@ -129,7 +131,10 @@ extension SudokuViewController {
     private func setupRxBtNumber(button: UIButton) {
         button.rx.tap
             .subscribe(onNext: { [weak self] in
-                print(button.tag)
+                let indexPath = IndexPath(item: self?.vm.selectedIndex ?? 0, section: 0)
+                if let cell = self?.cvSudoku.cellForItem(at: indexPath) as? SudokuCell {
+                    cell.setNumber(number: button.tag)
+                }
             }).disposed(by: disposeBag)
     }
     
