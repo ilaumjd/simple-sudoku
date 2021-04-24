@@ -27,6 +27,7 @@ class SudokuCell: UICollectionViewCell {
             self.isUserInteractionEnabled = false
         } else {
             label.textColor = .colorOrange
+            self.isUserInteractionEnabled = true
         }
     }
     

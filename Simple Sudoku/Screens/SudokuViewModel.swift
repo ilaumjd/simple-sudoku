@@ -28,6 +28,7 @@ class SudokuViewModel {
 extension SudokuViewModel {
     
     func newGame() {
+        self.selectedIndex = nil
         sudoku.setLevel(level: 1)
         self.defaultState = sudoku.game_sudoku
         self.solution = sudoku.original_sudoku

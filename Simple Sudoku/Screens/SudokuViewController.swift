@@ -74,6 +74,10 @@ extension SudokuViewController {
         btNewGame.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
         btNewGame.rx.tap
             .subscribe(onNext: { [weak self] in
+                let indexPath = IndexPath(item: self?.vm.selectedIndex ?? 0, section: 0)
+                if let cell = self?.cvSudoku.cellForItem(at: indexPath) as? SudokuCell {
+                    cell.deselect()
+                }
                 self?.vm.newGame()
             }).disposed(by: disposeBag)
     }
