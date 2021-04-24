@@ -21,7 +21,7 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5wT-Y2-y9U" userLabel="BG">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
-                    <color key="backgroundColor" name="colorDark"/>
+                    <color key="backgroundColor" name="colorDark1"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="400" id="pVj-bl-X8j"/>
                     </constraints>
@@ -51,7 +51,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="165.5" height="50"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="tintColor" name="colorWhite"/>
-                            <state key="normal" title="Button"/>
+                            <state key="normal" title="+   NEW GAME"/>
                         </button>
                     </subviews>
                     <color key="backgroundColor" name="colorOrange"/>
@@ -90,7 +90,7 @@
                         <constraint firstAttribute="height" constant="60" id="g2t-JL-5by"/>
                     </constraints>
                     <color key="tintColor" name="colorWhite"/>
-                    <state key="normal" title="Button"/>
+                    <state key="normal" title="SOLVE ME!"/>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -122,14 +122,14 @@
         </view>
     </objects>
     <resources>
-        <namedColor name="colorDark">
-            <color red="0.20784313725490194" green="0.30196078431372547" blue="0.36470588235294116" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="colorDark1">
+            <color red="0.19607843137254902" green="0.30588235294117649" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="colorGreen">
-            <color red="0.32941176470588235" green="0.70196078431372544" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.32941176470588235" green="0.69803921568627447" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="colorOrange">
-            <color red="0.81568627450980391" green="0.52156862745098043" blue="0.34509803921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.88627450980392153" green="0.47843137254901957" blue="0.25882352941176467" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="colorWhite">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
