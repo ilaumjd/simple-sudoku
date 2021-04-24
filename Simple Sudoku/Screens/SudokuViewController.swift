@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class SudokuViewController: UIViewController {
+    
+    private let disposeBag = DisposeBag()
+    private let lineSize: CGFloat = 4
     
     @IBOutlet weak var lbSudoku: UILabel!
     @IBOutlet weak var lbTimeTitle: UILabel!
@@ -16,8 +21,6 @@ class SudokuViewController: UIViewController {
     @IBOutlet weak var btSolveMe: UIButton!
     @IBOutlet weak var cvSudoku: UICollectionView!
     @IBOutlet weak var svNumber: UIStackView!
-    
-    let lineSize: CGFloat = 4
     
     static func create() -> SudokuViewController {
         return SudokuViewController(nibName: "SudokuViewController", bundle: nil)
@@ -74,11 +77,16 @@ extension SudokuViewController {
     
     private func setup_cvSudoku() {
         cvSudoku.register(UINib(nibName: SudokuCell.identifier, bundle: nil), forCellWithReuseIdentifier: SudokuCell.identifier)
-        cvSudoku.delegate = self
         cvSudoku.dataSource = self
         cvSudoku.layer.cornerRadius = 10
         cvSudoku.layer.borderWidth = lineSize
         cvSudoku.layer.borderColor = UIColor.orange.cgColor
+        
+        cvSudoku.rx.setDelegate(self).disposed(by: disposeBag)
+        cvSudoku.rx.itemSelected
+            .subscribe(onNext: { indexPath in
+                
+            }).disposed(by: disposeBag)
     }
     
     private func setup_svNumber() {
@@ -129,10 +137,6 @@ extension SudokuViewController: UICollectionViewDelegate, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets.zero
     }
     
 }
