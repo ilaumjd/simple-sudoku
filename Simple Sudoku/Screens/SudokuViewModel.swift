@@ -19,7 +19,7 @@ class SudokuViewModel {
     let alert = PublishSubject<Bool>()
     let timer = Observable<Int>
         .interval(.seconds(1), scheduler: MainScheduler.instance)
-        .map { 10 - $0 }
+        .map { 5 * 60 - $0 }
         .take(until: { $0 == 0 }, behavior: .inclusive)
     var timerString = BehaviorRelay<String>(value: "")
     var timerObserver: Disposable?
