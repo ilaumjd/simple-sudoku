@@ -1,7 +1,7 @@
 ## **Simple Sudoku**
 
 
-Simple weather app built using:
+Simple Sudoku game built using:
  - **Xcode** 12.4 (12D4e)
  - **Swift** 5
  - **UIKit** (using XIB)
