@@ -6,7 +6,7 @@ Simple weather app built using:
  - **Swift** 5
  - **UIKit** (using XIB)
  - **RxSwift**
- - **PBSudoku**
+ - [**PBSudoku**](https://github.com/sainkr/PBSudoku)
 
 **Screenshots:**
 
