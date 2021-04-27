@@ -10,26 +10,15 @@ import Foundation
 class SudokuSolver {
     
     func solve(grid: [[Int]], completion: @escaping (([[Int]]) -> ())) {
-        var newGrid = grid
-        var possibleValues = generateStartingPossibleValues(grid: grid)
-        var solved = false
+        let possibleValues = generateStartingPossibleValues(grid: grid)
         
-        (newGrid, possibleValues, solved) = solveBySinglePossibility(grid: newGrid, possibleValues: possibleValues)
+        print("---------------- SINGLE POSSIBILITY ----------------\n")
+        let (newGrid, newPossibleValues, solved) = solveBySinglePossibility(grid: grid, possibleValues: possibleValues)
         
-        // backtracking
-//        if !solved {
-//
-//            for i in 0..<9 {
-//                for j in 0..<9 {
-//
-//                    for number in possibleValues[i][j] {
-////                        newGrid[i][j] = number
-//                    }
-//
-//                }
-//            }
-//
-//        }
+        if !solved {
+            print("---------------- BACKTRACKING ----------------\n")
+            solveByBacktracking(grid: newGrid, possibleValues: newPossibleValues)
+        }
         
         completion(newGrid)
     }
@@ -48,6 +37,27 @@ class SudokuSolver {
             possibleValues.append(possibleValuesInRow)
         }
         return possibleValues
+    }
+    
+}
+
+// MARK: BACKTRACKING
+extension SudokuSolver {
+    
+    private func solveByBacktracking(grid: [[Int]], possibleValues: [[[Int]]]) {
+        var newGrid = grid
+        
+        for i in 0..<9 {
+            for j in 0..<9 {
+                if newGrid[i][j] == 0 {
+                    for number in possibleValues[i][j] {
+                        newGrid[i][j] = number
+                        solveByBacktracking(grid: newGrid, possibleValues: possibleValues)
+                    }
+                }
+            }
+        }
+        print(newGrid, "\n")
     }
     
 }
@@ -90,7 +100,6 @@ extension SudokuSolver {
                 }
             }
             
-            print(newPossibleValues)
             print(newGrid)
             print("solved: \(solved) \n")
             
