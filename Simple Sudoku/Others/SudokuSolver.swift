@@ -16,11 +16,15 @@ class SudokuSolver {
         
         print("---------------- SINGLE POSSIBILITY ----------------\n")
         var (newGrid, newPossibleValues, solved, invalid) = solveBySinglePossibility(grid: grid, possibleValues: possibleValues)
-        
+
         if invalid {
             failed()
             return
         }
+        
+//        var newGrid = grid
+//        let newPossibleValues = possibleValues
+//        let solved = false
         
         if !solved {
             print("---------------- BACKTRACKING ----------------\n")
@@ -56,22 +60,36 @@ extension SudokuSolver {
     private func solveByBacktracking(grid: [[Int]], possibleValues: [[[Int]]], lastRow: Int, lastColumn: Int) -> [[Int]] {
         var newGrid = grid
         
-        for i in 0..<9 {
+        loop: for i in 0..<9 {
             for j in 0..<9 {
                 if newGrid[i][j] == 0 {
+                    var possibleToContinue = false
+                    
                     for number in possibleValues[i][j] {
+                        
                         if possible(grid: newGrid, row: i, column: j, number: number) {
+                            
+                            possibleToContinue = true
                             newGrid[i][j] = number
+                            
                             if i == lastRow && j == lastColumn {
                                 self.stopBacktracking = true
                                 return newGrid
                             }
+                            
                             let tempGrid = solveByBacktracking(grid: newGrid, possibleValues: possibleValues, lastRow: lastRow, lastColumn: lastColumn)
+                            
                             if stopBacktracking {
                                 return tempGrid
                             }
+                            
                         }
                     }
+                    
+                    if !possibleToContinue {
+                        break loop
+                    }
+                    
                 }
             }
         }
