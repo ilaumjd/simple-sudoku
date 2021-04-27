@@ -50,12 +50,25 @@ class SudokuSolver {
             
         }
         
-        
+        // backtracking
+        if notCompleted {
+            
+            for i in 0..<9 {
+                for j in 0..<9 {
+                    
+                    for number in possibleValues[i][j] {
+//                        newGrid[i][j] = number
+                    }
+                    
+                }
+            }
+                
+        }
         
         completion(newGrid)
     }
     
-    func generateStartingPossibleValues(grid: [[Int]]) -> [[[Int]]] {
+    private func generateStartingPossibleValues(grid: [[Int]]) -> [[[Int]]] {
         var possibleValues = [[[Int]]]()
         for i in 0..<9 {
             var possibleValuesInRow = [[Int]]()
@@ -71,14 +84,14 @@ class SudokuSolver {
         return possibleValues
     }
     
-    func possible(grid: [[Int]], row: Int, column: Int, number: Int) -> Bool {
+    private func possible(grid: [[Int]], row: Int, column: Int, number: Int) -> Bool {
         let inRow = possibleInRow(grid: grid, row: row, number: number)
         let inColumn = possibleInColumn(grid: grid, column: column, number: number)
         let inSquare = possibleInSquare(grid: grid, row: row, column: column, number: number)
         return inRow && inColumn && inSquare
     }
     
-    func possibleInRow(grid: [[Int]], row: Int, number: Int) -> Bool {
+    private func possibleInRow(grid: [[Int]], row: Int, number: Int) -> Bool {
         for i in 0..<9 {
             if grid[row][i] == number {
                 return false
@@ -87,7 +100,7 @@ class SudokuSolver {
         return true
     }
     
-    func possibleInColumn(grid: [[Int]], column: Int, number: Int) -> Bool {
+    private func possibleInColumn(grid: [[Int]], column: Int, number: Int) -> Bool {
         for i in 0..<9 {
             if grid[i][column] == number {
                 return false
@@ -96,7 +109,7 @@ class SudokuSolver {
         return true
     }
     
-    func possibleInSquare(grid: [[Int]], row: Int, column: Int, number: Int) -> Bool {
+    private func possibleInSquare(grid: [[Int]], row: Int, column: Int, number: Int) -> Bool {
         let x0 = row / 3 * 3
         let y0 = column / 3 * 3
         for i in 0...2 {
