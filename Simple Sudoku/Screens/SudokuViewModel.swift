@@ -81,6 +81,8 @@ extension SudokuViewModel {
         let solver = SudokuSolver()
         solver.solve(grid: currentState.value) { grid in
             self.currentState.accept(grid)
+        } failed: {
+            print("failed")
         }
     }
     

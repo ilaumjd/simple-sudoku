@@ -9,11 +9,16 @@ import Foundation
 
 class SudokuSolver {
     
-    func solve(grid: [[Int]], completion: @escaping (([[Int]]) -> ())) {
+    func solve(grid: [[Int]], completion: @escaping (([[Int]]) -> ()), failed: @escaping (() -> ())) {
         let possibleValues = generateStartingPossibleValues(grid: grid)
         
         print("---------------- SINGLE POSSIBILITY ----------------\n")
-        let (newGrid, newPossibleValues, solved) = solveBySinglePossibility(grid: grid, possibleValues: possibleValues)
+        let (newGrid, newPossibleValues, solved, invalid) = solveBySinglePossibility(grid: grid, possibleValues: possibleValues)
+        
+        if invalid {
+            failed()
+            return
+        }
         
         if !solved {
             print("---------------- BACKTRACKING ----------------\n")
@@ -65,7 +70,7 @@ extension SudokuSolver {
 // MARK: SINGLE POSSIBILITY
 extension SudokuSolver {
     
-    private func solveBySinglePossibility(grid: [[Int]], possibleValues: [[[Int]]]) -> ([[Int]], [[[Int]]], Bool) {
+    private func solveBySinglePossibility(grid: [[Int]], possibleValues: [[[Int]]]) -> ([[Int]], [[[Int]]], Bool, Bool) {
         var newGrid = grid
         var newPossibleValues = possibleValues
         
@@ -89,6 +94,10 @@ extension SudokuSolver {
                             possible(grid: newGrid, row: i, column: j, number: number)
                         }
                         
+                        if newPossibleValues[i][j].count == 0 {
+                            return(newGrid, newPossibleValues, solved, true)
+                        }
+                        
                         if newPossibleValues[i][j].count == 1 {
                             newGrid[i][j] = newPossibleValues[i][j][0]
                             newPossibleValues[i][j] = []
@@ -105,7 +114,7 @@ extension SudokuSolver {
             
         }
         
-        return(newGrid, newPossibleValues, solved)
+        return(newGrid, newPossibleValues, solved, false)
         
     }
     
