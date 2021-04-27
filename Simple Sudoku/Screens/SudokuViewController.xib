@@ -59,8 +59,12 @@
                     <color key="textColor" name="colorWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pause.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pl3-I0-3G7">
+                    <rect key="frame" x="267" y="209.5" width="14.5" height="16"/>
+                    <color key="tintColor" name="colorOrange"/>
+                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:01:45" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9Z-dv-YC2">
-                    <rect key="frame" x="286.5" y="209" width="68.5" height="21"/>
+                    <rect key="frame" x="286.5" y="205" width="68.5" height="25"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" name="colorWhite"/>
                     <nil key="highlightedColor"/>
@@ -123,16 +127,19 @@
             <constraints>
                 <constraint firstItem="3HR-rx-IIU" firstAttribute="top" secondItem="1o7-fa-3tq" secondAttribute="bottom" constant="40" id="245-7N-gMu"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="KGY-7U-WCC" secondAttribute="bottom" id="2Gt-vO-MPW"/>
+                <constraint firstItem="pl3-I0-3G7" firstAttribute="height" secondItem="L9Z-dv-YC2" secondAttribute="height" multiplier="0.8" id="8g8-Lh-7W7"/>
                 <constraint firstItem="5wT-Y2-y9U" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="9pD-Ob-Bj5"/>
                 <constraint firstItem="RX4-Rv-ArR" firstAttribute="top" secondItem="1o7-fa-3tq" secondAttribute="top" id="ERo-v9-cbf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1o7-fa-3tq" secondAttribute="trailing" constant="20" id="Efv-6t-hUF"/>
                 <constraint firstItem="3HR-rx-IIU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="FJg-rg-rXR"/>
+                <constraint firstItem="L9Z-dv-YC2" firstAttribute="leading" secondItem="pl3-I0-3G7" secondAttribute="trailing" constant="5" id="GR7-x9-W2Q"/>
                 <constraint firstItem="RX4-Rv-ArR" firstAttribute="bottom" secondItem="1o7-fa-3tq" secondAttribute="bottom" id="ITB-YN-OT0"/>
                 <constraint firstItem="5wT-Y2-y9U" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Iil-Do-5J3"/>
                 <constraint firstItem="L9Z-dv-YC2" firstAttribute="bottom" secondItem="aFo-Sm-SMo" secondAttribute="bottom" id="JMc-0z-MVO"/>
                 <constraint firstItem="BLF-ET-2FK" firstAttribute="top" secondItem="qR2-bd-xcr" secondAttribute="bottom" constant="30" id="L7E-p6-DXt"/>
                 <constraint firstItem="1o7-fa-3tq" firstAttribute="top" secondItem="aFo-Sm-SMo" secondAttribute="bottom" constant="40" id="LKi-ZM-5us"/>
                 <constraint firstItem="i73-IH-wpf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Pgw-jJ-QY7"/>
+                <constraint firstItem="pl3-I0-3G7" firstAttribute="centerY" secondItem="L9Z-dv-YC2" secondAttribute="centerY" id="RAf-rD-lt8"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="L9Z-dv-YC2" secondAttribute="trailing" constant="20" id="SmT-gw-QY7"/>
                 <constraint firstItem="aFo-Sm-SMo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Stm-Is-K8p"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="i73-IH-wpf" secondAttribute="trailing" id="TcK-uz-tJW"/>
@@ -152,6 +159,7 @@
     </objects>
     <resources>
         <image name="logo" width="144" height="63"/>
+        <image name="pause.fill" catalog="system" width="116" height="128"/>
         <namedColor name="colorDark1">
             <color red="0.19599999487400055" green="0.3059999942779541" blue="0.36100000143051147" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
