@@ -47,7 +47,7 @@ extension SudokuViewModel {
     }
     
     func dummyGame() {
-        var dummy = SudokuDummies.dummy
+        var dummy = SudokuDummies.hard
         self.solution = dummy
         dummy[0][0] = 0
         dummy[4][7] = 0

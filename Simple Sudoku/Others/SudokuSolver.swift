@@ -12,15 +12,22 @@ class SudokuSolver {
     func solve(grid: [[Int]], completion: @escaping (([[Int]]) -> ())) {
         var newGrid = grid
         var possibleValues = generateStartingPossibleValues(grid: grid)
-        var singlePossibility = true
         
+        var singlePossibility = true
+        var notCompleted = true
+        
+        // fill single possibility
         while singlePossibility {
             
             singlePossibility = false
+            notCompleted = false
             
             for i in 0..<9 {
                 for j in 0..<9 {
+                    
                     if newGrid[i][j] == 0 {
+                        
+                        notCompleted = true
                         
                         possibleValues[i][j] = possibleValues[i][j].filter { number in
                             possible(grid: newGrid, row: i, column: j, number: number)
@@ -31,15 +38,19 @@ class SudokuSolver {
                             possibleValues[i][j] = []
                             singlePossibility = true
                         }
-                        
+
                     }
+                    
                 }
             }
             
             print(possibleValues)
-            print(newGrid, "\n")
+            print(newGrid)
+            print("completed: \(!notCompleted) \n")
             
         }
+        
+        
         
         completion(newGrid)
     }
