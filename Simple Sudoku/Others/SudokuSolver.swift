@@ -7,31 +7,55 @@
 
 import Foundation
 
-struct EmptyCell {
-    
-    var row: Int
-    var column: Int
-    var possibleValues: [Int]
-    
-}
-
 class SudokuSolver {
     
-    var emptyCells = [EmptyCell]()
-    
     func solve(grid: [[Int]]) {
-        for i in 0..<9 {
-            for j in 0..<9 {
-                if grid[i][j] == 0 {
-                    let possibleValues = (1...9).filter { number in
-                        let b = possible(grid: grid, row: i, column: j, number: number)
-                        return b
+        var newGrid = grid
+        var possibleValues = generateStartingPossibleValues(grid: grid)
+        var singlePossibility = true
+        
+        while singlePossibility {
+            
+            singlePossibility = false
+            
+            for i in 0..<9 {
+                for j in 0..<9 {
+                    if newGrid[i][j] == 0 {
+                        
+                        possibleValues[i][j] = possibleValues[i][j].filter { number in
+                            possible(grid: newGrid, row: i, column: j, number: number)
+                        }
+                        
+                        if possibleValues[i][j].count == 1 {
+                            newGrid[i][j] = possibleValues[i][j][0]
+                            possibleValues[i][j] = []
+                            singlePossibility = true
+                        }
+                        
                     }
-                    print(" ", i, j, possibleValues)
-                    emptyCells.append(EmptyCell(row: i, column: j, possibleValues: possibleValues))
                 }
             }
+            
+            print(possibleValues)
+            print(newGrid, "\n")
+            
         }
+    }
+    
+    func generateStartingPossibleValues(grid: [[Int]]) -> [[[Int]]] {
+        var possibleValues = [[[Int]]]()
+        for i in 0..<9 {
+            var possibleValuesInRow = [[Int]]()
+            for j in 0..<9 {
+                if grid[i][j] == 0 {
+                    possibleValuesInRow.append(Array(1...9))
+                } else {
+                    possibleValuesInRow.append([])
+                }
+            }
+            possibleValues.append(possibleValuesInRow)
+        }
+        return possibleValues
     }
     
     func possible(grid: [[Int]], row: Int, column: Int, number: Int) -> Bool {
@@ -65,7 +89,6 @@ class SudokuSolver {
         for i in 0...2 {
             for j in 0...2 {
                 if grid[x0+i][y0+j] == number {
-                    print(i, j, number)
                     return false
                 }
             }
