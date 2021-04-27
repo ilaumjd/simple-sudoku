@@ -15,7 +15,7 @@ class SudokuViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let lineWidth: CGFloat = 3
     
-    @IBOutlet weak var lbSudoku: UILabel!
+    @IBOutlet weak var ivSudoku: UIImageView!
     @IBOutlet weak var lbTimeTitle: UILabel!
     @IBOutlet weak var lbTimeValue: UILabel!
     @IBOutlet weak var btNewGame: UIButton!
@@ -80,7 +80,6 @@ extension SudokuViewController {
     }
     
     private func setupFonts() {
-        lbSudoku.font = .rounded(ofSize: 100, weight: .bold)
         lbTimeTitle.font = .rounded(ofSize: 14, weight: .medium)
         lbTimeValue.font = .systemFont(ofSize: 24, weight: .bold)
         btNewGame.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
