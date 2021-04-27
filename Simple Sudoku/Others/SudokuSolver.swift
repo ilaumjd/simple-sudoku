@@ -9,11 +9,13 @@ import Foundation
 
 class SudokuSolver {
     
+    private var stopBacktracking = false
+    
     func solve(grid: [[Int]], completion: @escaping (([[Int]]) -> ()), failed: @escaping (() -> ())) {
         let possibleValues = generateStartingPossibleValues(grid: grid)
         
         print("---------------- SINGLE POSSIBILITY ----------------\n")
-        let (newGrid, newPossibleValues, solved, invalid) = solveBySinglePossibility(grid: grid, possibleValues: possibleValues)
+        var (newGrid, newPossibleValues, solved, invalid) = solveBySinglePossibility(grid: grid, possibleValues: possibleValues)
         
         if invalid {
             failed()
@@ -22,7 +24,9 @@ class SudokuSolver {
         
         if !solved {
             print("---------------- BACKTRACKING ----------------\n")
-            solveByBacktracking(grid: newGrid, possibleValues: newPossibleValues)
+            let (lastRow, lastColumn) = lastIndex(possibleValues: newPossibleValues)
+            newGrid = solveByBacktracking(grid: newGrid, possibleValues: newPossibleValues, lastRow: lastRow, lastColumn: lastColumn)
+            print(newGrid)
         }
         
         completion(newGrid)
@@ -49,20 +53,40 @@ class SudokuSolver {
 // MARK: BACKTRACKING
 extension SudokuSolver {
     
-    private func solveByBacktracking(grid: [[Int]], possibleValues: [[[Int]]]) {
+    private func solveByBacktracking(grid: [[Int]], possibleValues: [[[Int]]], lastRow: Int, lastColumn: Int) -> [[Int]] {
         var newGrid = grid
         
         for i in 0..<9 {
             for j in 0..<9 {
                 if newGrid[i][j] == 0 {
                     for number in possibleValues[i][j] {
-                        newGrid[i][j] = number
-                        solveByBacktracking(grid: newGrid, possibleValues: possibleValues)
+                        if possible(grid: newGrid, row: i, column: j, number: number) {
+                            newGrid[i][j] = number
+                            if i == lastRow && j == lastColumn {
+                                self.stopBacktracking = true
+                                return newGrid
+                            }
+                            let tempGrid = solveByBacktracking(grid: newGrid, possibleValues: possibleValues, lastRow: lastRow, lastColumn: lastColumn)
+                            if stopBacktracking {
+                                return tempGrid
+                            }
+                        }
                     }
                 }
             }
         }
-        print(newGrid, "\n")
+        return []
+    }
+    
+    private func lastIndex(possibleValues: [[[Int]]]) -> (Int, Int) {
+        for i in (0..<9).reversed() {
+            for j in (0..<9).reversed() {
+                if !possibleValues[i][j].isEmpty {
+                    return (i,j)
+                }
+            }
+        }
+        return (0,0)
     }
     
 }
