@@ -7,61 +7,65 @@
 
 import Foundation
 
+struct EmptyCell {
+    
+    var row: Int
+    var column: Int
+    var possibleValues: [Int]
+    
+}
+
 class SudokuSolver {
     
-    var sudoku: [[Int]]
+    var emptyCells = [EmptyCell]()
     
-    init(sudoku: [[Int]]) {
-        self.sudoku = sudoku
-    }
-    
-    func solve() {
+    func solve(grid: [[Int]]) {
         for i in 0..<9 {
             for j in 0..<9 {
-                if self.sudoku[i][j] == 0 {
-                    for number in 1...9 {
-                        if possible(row: i, column: j, number: number) {
-                            self.sudoku[i][j] = number
-                            solve()
-                            self.sudoku[i][j] = 0
-                        }
+                if grid[i][j] == 0 {
+                    let possibleValues = (1...9).filter { number in
+                        let b = possible(grid: grid, row: i, column: j, number: number)
+                        return b
                     }
-                    return
+                    print(" ", i, j, possibleValues)
+                    emptyCells.append(EmptyCell(row: i, column: j, possibleValues: possibleValues))
                 }
             }
         }
     }
     
-    func possible(row: Int, column: Int, number: Int) -> Bool {
-        return possibleRow(row: row, number: number)
-            && possibleColumn(column: column, number: number)
-            && possibleSquare(row: row, column: column, number: number)
+    func possible(grid: [[Int]], row: Int, column: Int, number: Int) -> Bool {
+        let inRow = possibleInRow(grid: grid, row: row, number: number)
+        let inColumn = possibleInColumn(grid: grid, column: column, number: number)
+        let inSquare = possibleInSquare(grid: grid, row: row, column: column, number: number)
+        return inRow && inColumn && inSquare
     }
     
-    func possibleRow(row: Int, number: Int) -> Bool {
+    func possibleInRow(grid: [[Int]], row: Int, number: Int) -> Bool {
         for i in 0..<9 {
-            if self.sudoku[row][i] == number {
+            if grid[row][i] == number {
                 return false
             }
         }
         return true
     }
     
-    func possibleColumn(column: Int, number: Int) -> Bool {
+    func possibleInColumn(grid: [[Int]], column: Int, number: Int) -> Bool {
         for i in 0..<9 {
-            if self.sudoku[i][column] == number {
+            if grid[i][column] == number {
                 return false
             }
         }
         return true
     }
     
-    func possibleSquare(row: Int, column: Int, number: Int) -> Bool {
-        let x0 = column / 3 * 3
-        let y0 = row / 3 * 3
-        for i in x0..<x0+3 {
-            for j in y0..<y0+3 {
-                if self.sudoku[i][j] == number {
+    func possibleInSquare(grid: [[Int]], row: Int, column: Int, number: Int) -> Bool {
+        let x0 = row / 3 * 3
+        let y0 = column / 3 * 3
+        for i in 0...2 {
+            for j in 0...2 {
+                if grid[x0+i][y0+j] == number {
+                    print(i, j, number)
                     return false
                 }
             }

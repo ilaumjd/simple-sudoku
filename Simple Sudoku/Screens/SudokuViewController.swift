@@ -146,7 +146,8 @@ extension SudokuViewController {
         btSolveMe.rx.tap
             .subscribe(onNext: { [weak self] in
                 if let vm = self?.vm {
-                    vm.currentState.accept(vm.solution)
+//                    vm.currentState.accept(vm.solution)
+                    vm.solve()
                 }
             }).disposed(by: disposeBag)
     }

@@ -77,6 +77,14 @@ extension SudokuViewModel {
         return defaultIndexes[index]
     }
     
+    func solve() {
+        let solver = SudokuSolver()
+//        print(solver.sudoku)
+        solver.solve(grid: currentState.value)
+//        print(solver.sudoku)
+//        self.currentState.accept(solver.sudoku)
+    }
+    
 }
 
 // MARK: CHECKING
