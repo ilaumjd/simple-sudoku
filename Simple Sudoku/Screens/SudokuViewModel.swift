@@ -47,12 +47,12 @@ extension SudokuViewModel {
     }
     
     func dummyGame() {
-        var dummy = SudokuDummies.dummy1
+        var dummy = SudokuDummies.dummy
+        self.solution = dummy
         dummy[0][0] = 0
         dummy[4][7] = 0
         dummy[5][1] = 0
         self.defaultState = dummy
-        self.solution = SudokuDummies.dummy1
         start()
     }
     
@@ -79,10 +79,9 @@ extension SudokuViewModel {
     
     func solve() {
         let solver = SudokuSolver()
-//        print(solver.sudoku)
-        solver.solve(grid: currentState.value)
-//        print(solver.sudoku)
-//        self.currentState.accept(solver.sudoku)
+        solver.solve(grid: currentState.value) { grid in
+            self.currentState.accept(grid)
+        }
     }
     
 }

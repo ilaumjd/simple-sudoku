@@ -9,7 +9,7 @@ import Foundation
 
 class SudokuSolver {
     
-    func solve(grid: [[Int]]) {
+    func solve(grid: [[Int]], completion: @escaping (([[Int]]) -> ())) {
         var newGrid = grid
         var possibleValues = generateStartingPossibleValues(grid: grid)
         var singlePossibility = true
@@ -40,6 +40,8 @@ class SudokuSolver {
             print(newGrid, "\n")
             
         }
+        
+        completion(newGrid)
     }
     
     func generateStartingPossibleValues(grid: [[Int]]) -> [[[Int]]] {
