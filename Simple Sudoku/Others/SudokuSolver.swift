@@ -12,58 +12,24 @@ class SudokuSolver {
     func solve(grid: [[Int]], completion: @escaping (([[Int]]) -> ())) {
         var newGrid = grid
         var possibleValues = generateStartingPossibleValues(grid: grid)
+        var solved = false
         
-        var singlePossibility = true
-        var notCompleted = true
-        
-        // fill single possibility
-        while singlePossibility {
-            
-            singlePossibility = false
-            notCompleted = false
-            
-            for i in 0..<9 {
-                for j in 0..<9 {
-                    
-                    if newGrid[i][j] == 0 {
-                        
-                        notCompleted = true
-                        
-                        possibleValues[i][j] = possibleValues[i][j].filter { number in
-                            possible(grid: newGrid, row: i, column: j, number: number)
-                        }
-                        
-                        if possibleValues[i][j].count == 1 {
-                            newGrid[i][j] = possibleValues[i][j][0]
-                            possibleValues[i][j] = []
-                            singlePossibility = true
-                        }
-
-                    }
-                    
-                }
-            }
-            
-            print(possibleValues)
-            print(newGrid)
-            print("completed: \(!notCompleted) \n")
-            
-        }
+        (newGrid, possibleValues, solved) = solveBySinglePossibility(grid: newGrid, possibleValues: possibleValues)
         
         // backtracking
-        if notCompleted {
-            
-            for i in 0..<9 {
-                for j in 0..<9 {
-                    
-                    for number in possibleValues[i][j] {
-//                        newGrid[i][j] = number
-                    }
-                    
-                }
-            }
-                
-        }
+//        if !solved {
+//
+//            for i in 0..<9 {
+//                for j in 0..<9 {
+//
+//                    for number in possibleValues[i][j] {
+////                        newGrid[i][j] = number
+//                    }
+//
+//                }
+//            }
+//
+//        }
         
         completion(newGrid)
     }
@@ -83,6 +49,61 @@ class SudokuSolver {
         }
         return possibleValues
     }
+    
+}
+
+// MARK: SINGLE POSSIBILITY
+extension SudokuSolver {
+    
+    private func solveBySinglePossibility(grid: [[Int]], possibleValues: [[[Int]]]) -> ([[Int]], [[[Int]]], Bool) {
+        var newGrid = grid
+        var newPossibleValues = possibleValues
+        
+        var singlePossibility = true
+        var solved = false
+        
+        // fill single possibility
+        while singlePossibility {
+            
+            singlePossibility = false
+            solved = true
+            
+            for i in 0..<9 {
+                for j in 0..<9 {
+                    
+                    if newGrid[i][j] == 0 {
+                        
+                        solved = false
+                        
+                        newPossibleValues[i][j] = newPossibleValues[i][j].filter { number in
+                            possible(grid: newGrid, row: i, column: j, number: number)
+                        }
+                        
+                        if newPossibleValues[i][j].count == 1 {
+                            newGrid[i][j] = newPossibleValues[i][j][0]
+                            newPossibleValues[i][j] = []
+                            singlePossibility = true
+                        }
+
+                    }
+                    
+                }
+            }
+            
+            print(newPossibleValues)
+            print(newGrid)
+            print("solved: \(solved) \n")
+            
+        }
+        
+        return(newGrid, newPossibleValues, solved)
+        
+    }
+    
+}
+
+// MARK: POSSIBLE NUMBER CHECKING
+extension SudokuSolver {
     
     private func possible(grid: [[Int]], row: Int, column: Int, number: Int) -> Bool {
         let inRow = possibleInRow(grid: grid, row: row, number: number)
