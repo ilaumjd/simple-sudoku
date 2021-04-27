@@ -22,6 +22,7 @@ class SudokuViewController: UIViewController {
     @IBOutlet weak var btSolveMe: UIButton!
     @IBOutlet weak var cvSudoku: UICollectionView!
     @IBOutlet weak var svNumber: UIStackView!
+    @IBOutlet weak var aivLoading: UIActivityIndicatorView!
     
     @IBOutlet weak var btDummy: UIButton!
     
@@ -75,6 +76,7 @@ extension SudokuViewController {
         setupFonts()
         setup_cvSudoku()
         setup_svNumber()
+        setup_aivLoading()
     }
     
     private func setupFonts() {
@@ -110,6 +112,11 @@ extension SudokuViewController {
             svNumber.addArrangedSubview(button)
             setupRx_btNumber(button: button)
         }
+    }
+    
+    private func setup_aivLoading() {
+        aivLoading.backgroundColor = UIColor.colorDark1.withAlphaComponent(0.8)
+        aivLoading.isHidden = true
     }
     
     private func drawLines() {
@@ -148,6 +155,7 @@ extension SudokuViewController {
                 if let vm = self?.vm {
 //                    vm.currentState.accept(vm.solution)
                     vm.solve()
+                    self?.aivLoading.isHidden = false
                 }
             }).disposed(by: disposeBag)
     }
