@@ -16,7 +16,7 @@ class SudokuViewModel {
     
     var selectedIndex: Int?
     
-    let alert = PublishSubject<Bool>()
+    let alert = PublishSubject<String>()
     let timer = Observable<Int>
         .interval(.seconds(1), scheduler: MainScheduler.instance)
         .map { 5 * 60 - $0 }
@@ -40,7 +40,7 @@ class SudokuViewModel {
 extension SudokuViewModel {
     
     func newGame() {
-        sudoku.setLevel(level: 10)
+        sudoku.setLevel(level: 1)
         self.defaultState = sudoku.game_sudoku
         self.solution = sudoku.original_sudoku
         start()
@@ -68,7 +68,7 @@ extension SudokuViewModel {
             .subscribe(onNext: { [weak self] seconds in
                 self?.timerString.accept(Double(seconds).asString(style: .positional))
             }, onCompleted: { [weak self] in
-                self?.alert.onNext(false)
+                self?.alert.onNext("Time out")
             })
         self.timerObserver?.disposed(by: disposeBag)
     }
@@ -81,8 +81,9 @@ extension SudokuViewModel {
         let solver = SudokuSolver()
         solver.solve(grid: currentState.value) { grid in
             self.currentState.accept(grid)
+            self.alert.onNext("Solved")
         } failed: {
-            print("failed")
+            self.alert.onNext("Invalid")
         }
     }
     
@@ -92,12 +93,12 @@ extension SudokuViewModel {
 extension SudokuViewModel {
     
     private func setupRxChecking() {
-        currentState.subscribe(onNext: { [weak self] currentState in
-            if let solution = self?.solution, !solution.isEmpty, currentState == solution {
-                self?.timerObserver?.dispose()
-                self?.alert.onNext(true)
-            }
-        }).disposed(by: disposeBag)
+//        currentState.subscribe(onNext: { [weak self] currentState in
+//            if let solution = self?.solution, !solution.isEmpty, currentState == solution {
+//                self?.timerObserver?.dispose()
+//                self?.alert.onNext("")
+//            }
+//        }).disposed(by: disposeBag)
     }
     
 }

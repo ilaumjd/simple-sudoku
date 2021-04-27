@@ -153,9 +153,12 @@ extension SudokuViewController {
         btSolveMe.rx.tap
             .subscribe(onNext: { [weak self] in
                 if let vm = self?.vm {
-//                    vm.currentState.accept(vm.solution)
-                    vm.solve()
-                    self?.aivLoading.isHidden = false
+                    DispatchQueue.main.async {
+                        self?.aivLoading.isHidden = false
+                    }
+                    DispatchQueue.global().async {
+                        vm.solve()
+                    }
                 }
             }).disposed(by: disposeBag)
     }
@@ -196,19 +199,13 @@ extension SudokuViewController {
     
     private func setupRxAlert() {
         self.vm.alert
-            .subscribe(onNext: { [weak self] isSuccess in
-                var title = ""
-                var message = ""
-                if isSuccess {
-                    title = "Congratulations"
-                    message = "You completed the game"
-                } else {
-                    title = "Failed"
-                    message = "You ran out of time"
+            .subscribe(onNext: { [weak self] message in
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self?.present(alert, animated: true)
+                    self?.aivLoading.isHidden = true
                 }
-                let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self?.present(alert, animated: true)
             }).disposed(by: disposeBag)
     }
     
