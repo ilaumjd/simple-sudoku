@@ -16,6 +16,17 @@ class SudokuChecker {
         return inRow && inColumn && inSquare
     }
     
+    func isSolved(grid: [[Int]]) -> Bool {
+        for i in 0..<9 {
+            for j in 0..<9 {
+                if grid[i][j] == 0 {
+                    return false
+                }
+            }
+        }
+        return isValid(grid: grid)
+    }
+    
     
 }
 

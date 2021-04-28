@@ -13,6 +13,8 @@ import PBSudoku
 class SudokuViewModel {
     
     private let disposeBag = DisposeBag()
+    private let checker = SudokuChecker()
+    private let solver = SudokuSolver()
     
     var selectedIndex: Int?
     
@@ -47,7 +49,7 @@ extension SudokuViewModel {
     }
     
     func dummyGame() {
-        var dummy = SudokuDummies.hard
+        var dummy = SudokuDummies.dummy
         self.solution = dummy
         dummy[0][0] = 0
         dummy[4][7] = 0
@@ -78,17 +80,16 @@ extension SudokuViewModel {
     }
     
     func solve() {
-        let checker = SudokuChecker()
         if checker.isValid(grid: currentState.value) {
-            let solver = SudokuSolver()
             solver.solve(grid: currentState.value) { grid in
                 self.currentState.accept(grid)
-                self.alert.onNext("Solved")
             } failed: {
                 self.alert.onNext("Invalid")
+                self.timerObserver?.dispose()
             }
         } else {
             self.alert.onNext("Invalid")
+            self.timerObserver?.dispose()
         }
     }
     
@@ -98,12 +99,15 @@ extension SudokuViewModel {
 extension SudokuViewModel {
     
     private func setupRxChecking() {
-//        currentState.subscribe(onNext: { [weak self] currentState in
-//            if let solution = self?.solution, !solution.isEmpty, currentState == solution {
-//                self?.timerObserver?.dispose()
-//                self?.alert.onNext("")
-//            }
-//        }).disposed(by: disposeBag)
+        currentState.subscribe(onNext: { [weak self] currentState in
+            if currentState.isEmpty {
+                return
+            }
+            if self?.checker.isSolved(grid: currentState) ?? false {
+                self?.alert.onNext("Solved")
+                self?.timerObserver?.dispose()
+            }
+        }).disposed(by: disposeBag)
     }
     
 }
