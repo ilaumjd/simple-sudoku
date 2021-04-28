@@ -68,6 +68,7 @@ extension SudokuChecker {
                 }
             }
         }
+        print("\n")
         return true
     }
     
@@ -75,7 +76,7 @@ extension SudokuChecker {
         for i in 1...9 {
             let count = numbers.filter({ $0 == i }).count
             if count > 1 {
-                print("double \(i) on: \(numbers)")
+                print("double \(i) on: \(numbers)\n")
                 return true
             }
         }
