@@ -9,23 +9,26 @@ import Foundation
 
 class SudokuChecker {
     
+    func isValid(grid: [[Int]]) -> Bool {
+        let inRow = validRow(grid: grid)
+        let inColumn = validColumn(grid: grid)
+        let inSquare = validSquare(grid: grid)
+        return inRow && inColumn && inSquare
+    }
+    
     
 }
 
 // MARK: VALID CHECKING
 extension SudokuChecker {
     
-    func isValid(grid: [[Int]]) -> Bool {
-        let inRow = validRow(grid: grid)
-        let inColumn = validColumn(grid: grid)
-        let inSquare = validSquare(grid: grid)
-        return true
-    }
-    
     private func validRow(grid: [[Int]]) -> Bool {
         for i in 0..<9 {
-            let row = grid[i].filter { $0 != 0}
-            print(row)
+            let numbers = grid[i].filter { $0 != 0}
+            print(numbers)
+            if anyMultipleNumber(numbers: numbers) {
+                return false
+            }
         }
         print("\n")
         return true
@@ -33,12 +36,15 @@ extension SudokuChecker {
     
     private func validColumn(grid: [[Int]]) -> Bool {
         for i in 0..<9 {
-            var column = [Int]()
+            var numbers = [Int]()
             for j in 0..<9 {
-                column.append(grid[j][i])
+                numbers.append(grid[j][i])
             }
-            column = column.filter { $0 != 0 }
-            print(column)
+            numbers = numbers.filter { $0 != 0 }
+            print(numbers)
+            if anyMultipleNumber(numbers: numbers) {
+                return false
+            }
         }
         print("\n")
         return true
@@ -48,19 +54,32 @@ extension SudokuChecker {
         let start = [0, 3, 6]
         for i in start {
             for j in start {
-                var square = [Int]()
+                var numbers = [Int]()
                 
                 for x0 in i...i+2 {
                     for y0 in j...j+2 {
-                        square.append(grid[x0][y0])
+                        numbers.append(grid[x0][y0])
                     }
                 }
-                
-                square = square.filter { $0 != 0 }
-                print(square)
+                numbers = numbers.filter { $0 != 0 }
+                print(numbers)
+                if anyMultipleNumber(numbers: numbers) {
+                    return false
+                }
             }
         }
         return true
+    }
+    
+    private func anyMultipleNumber(numbers: [Int]) -> Bool {
+        for i in 1...9 {
+            let count = numbers.filter({ $0 == i }).count
+            if count > 1 {
+                print("double \(i) on: \(numbers)")
+                return true
+            }
+        }
+        return false
     }
     
 }
