@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7EB886E8C65ECE45315BBF93 /* Pods_Simple_Sudoku.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE6BEFAB99002D352C80B9FC /* Pods_Simple_Sudoku.framework */; };
 		D99BDA8C2637F7E300919994 /* SudokuSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99BDA8B2637F7E300919994 /* SudokuSolver.swift */; };
+		D9AE24712638FFAF005B3D89 /* SudokuChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AE24702638FFAF005B3D89 /* SudokuChecker.swift */; };
 		D9E2D6B026340BE800E0E1B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E2D6AF26340BE800E0E1B0 /* AppDelegate.swift */; };
 		D9E2D6B226340BE800E0E1B0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E2D6B126340BE800E0E1B0 /* SceneDelegate.swift */; };
 		D9E2D6B926340BEB00E0E1B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9E2D6B826340BEB00E0E1B0 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		410610CC3C28EB42E270ACDA /* Pods-Simple Sudoku.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simple Sudoku.debug.xcconfig"; path = "Target Support Files/Pods-Simple Sudoku/Pods-Simple Sudoku.debug.xcconfig"; sourceTree = "<group>"; };
 		867EB7B6B408BC42F74C185C /* Pods-Simple Sudoku.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simple Sudoku.release.xcconfig"; path = "Target Support Files/Pods-Simple Sudoku/Pods-Simple Sudoku.release.xcconfig"; sourceTree = "<group>"; };
 		D99BDA8B2637F7E300919994 /* SudokuSolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuSolver.swift; sourceTree = "<group>"; };
+		D9AE24702638FFAF005B3D89 /* SudokuChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuChecker.swift; sourceTree = "<group>"; };
 		D9E2D6AC26340BE800E0E1B0 /* Simple Sudoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple Sudoku.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9E2D6AF26340BE800E0E1B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9E2D6B126340BE800E0E1B0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			children = (
 				D9E2D6EB26343CDF00E0E1B0 /* SudokuDummies.swift */,
 				D99BDA8B2637F7E300919994 /* SudokuSolver.swift */,
+				D9AE24702638FFAF005B3D89 /* SudokuChecker.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				D99BDA8C2637F7E300919994 /* SudokuSolver.swift in Sources */,
 				D9E2D6E82634336300E0E1B0 /* SudokuViewModel.swift in Sources */,
 				D9E2D6C926340C9000E0E1B0 /* SudokuViewController.swift in Sources */,
+				D9AE24712638FFAF005B3D89 /* SudokuChecker.swift in Sources */,
 				D9E2D6D62634148B00E0E1B0 /* UIFont+Ext.swift in Sources */,
 				D9E2D6FC263474A500E0E1B0 /* Double+Ext.swift in Sources */,
 			);

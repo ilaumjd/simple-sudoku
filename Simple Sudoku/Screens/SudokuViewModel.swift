@@ -78,13 +78,15 @@ extension SudokuViewModel {
     }
     
     func solve() {
-        let solver = SudokuSolver()
-        solver.solve(grid: currentState.value) { grid in
-            self.currentState.accept(grid)
-            self.alert.onNext("Solved")
-        } failed: {
-            self.alert.onNext("Invalid")
-        }
+        let checker = SudokuChecker()
+        checker.isValid(grid: currentState.value)
+//        let solver = SudokuSolver()
+//        solver.solve(grid: currentState.value) { grid in
+//            self.currentState.accept(grid)
+//            self.alert.onNext("Solved")
+//        } failed: {
+//            self.alert.onNext("Invalid")
+//        }
     }
     
 }
