@@ -6,7 +6,8 @@ Simple Sudoku game built using:
  - **Swift** 5
  - **UIKit** (using XIB)
  - **RxSwift**
- - [**PBSudoku**](https://github.com/sainkr/PBSudoku)
+ - [**PBSudoku**](https://github.com/sainkr/PBSudoku) for generating the problems
+ - **Backtracking algorithm** for the auto solve feature
 
 **Screenshots:**
 
